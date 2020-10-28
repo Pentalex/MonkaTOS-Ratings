@@ -100,7 +100,6 @@ const options = {
       filename: "index.html",
       chunks: ["index"],
     }),
-    // new WriteFilePlugin(),
   ],
   optimization: {
     minimize: true,
@@ -120,6 +119,9 @@ const options = {
     },
     concatenateModules: true,
   },
+  devServer: {
+    port: env.PORT || 3000
+  }
 };
 
 if (env.NODE_ENV === "development") {
