@@ -1,0 +1,33 @@
+@import url("bootstrap/dist/css/bootstrap.css");
+
+body {
+  font-size: 80%;
+}
+
+button {
+  margin: 0 auto;
+  display: block;
+}
+
+div {
+  background: white;
+  width: 240px;
+  margin: 20px;
+}
+
+.flex-center {
+  margin: 40px auto;
+  color: white;
+  border: 10px solid white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 200px;
+  resize: vertical;
+  overflow: auto;
+}
+
+.flex-center p {
+  margin: 0;
+  padding: 20px;
+}
