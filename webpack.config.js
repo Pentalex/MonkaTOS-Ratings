@@ -5,7 +5,6 @@ const webpack = require("webpack"),
   CleanWebpackPlugin = require("clean-webpack-plugin").CleanWebpackPlugin,
   CopyWebpackPlugin = require("copy-webpack-plugin"),
   HtmlWebpackPlugin = require("html-webpack-plugin"),
-  WriteFilePlugin = require("write-file-webpack-plugin"),
   ClosurePlugin = require("closure-webpack-plugin");
 
 // load the secrets
@@ -101,7 +100,7 @@ const options = {
       filename: "index.html",
       chunks: ["index"],
     }),
-    new WriteFilePlugin(),
+    // new WriteFilePlugin(),
   ],
   optimization: {
     minimize: true,
