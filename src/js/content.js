@@ -66,12 +66,16 @@ function init() {
         if (result == "0") {
           $(".toscontainer").append(
             `
-        <img style="cursor: pointer; float: left;padding: 5px;" src="` +
-              chrome.extension.getURL("upvote.png") +
-              `" width="24" height="24" id="upvote" />
-        <img style="cursor: pointer; float: left;padding: 5px;" src="` +
-              chrome.extension.getURL("downvote.png") +
-              `" width="24" height="24" id="downvote" />
+        <img style="cursor: pointer; float: left;padding: 5px;"
+             src="${chrome.extension.getURL("upvote.png")}"
+             width="24"
+             height="24"
+             id="upvote" />
+        <img style="cursor: pointer; float: left;padding: 5px;"
+             src="${chrome.extension.getURL("downvote.png")}"
+             width="24"
+             height="24"
+             id="downvote" />
         <p id="tos" style="float: left;  padding 5px;">This video hasn't been rated.</span></p>
         `
           );
@@ -79,17 +83,19 @@ function init() {
           $(".toscontainer").empty();
           $(".toscontainer").append(
             `
-          <img style="cursor: pointer; float: left;padding: 5px;" src="` +
-              chrome.extension.getURL("upvote.png") +
-              `" width="24" height="24" id="upvote" />
-          <img style="cursor: pointer; float: left;padding: 5px;" src="` +
-              chrome.extension.getURL("downvote.png") +
-              `" width="24" height="24" id="downvote" />
-          <p id="tos" style="float: left;  padding 5px;">TOS Score: <span id='scoretext'>` +
-              scoretxt +
-              ` (` +
-              result +
-              `)</span></p>
+          <img style="cursor: pointer; float: left;padding: 5px;"
+               src="${chrome.extension.getURL("upvote.png")}"
+               width="24"
+               height="24"
+               id="upvote" />
+          <img style="cursor: pointer; float: left;padding: 5px;"
+               src="${chrome.extension.getURL("downvote.png")}"
+               width="24"
+               height="24"
+               id="downvote" />
+          <p id="tos" style="float: left;  padding 5px;">
+              TOS Score: <span id='scoretext'>${scoretxt}(${result})</span>
+          </p>
           `
           );
         }
