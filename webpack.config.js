@@ -5,7 +5,7 @@ const webpack = require("webpack"),
   CleanWebpackPlugin = require("clean-webpack-plugin").CleanWebpackPlugin,
   CopyWebpackPlugin = require("copy-webpack-plugin"),
   HtmlWebpackPlugin = require("html-webpack-plugin"),
-  ClosurePlugin = require("closure-webpack-plugin");
+  // ClosurePlugin = require("closure-webpack-plugin");
 
 // load the secrets
 let alias = {};
