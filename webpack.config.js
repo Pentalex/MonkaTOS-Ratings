@@ -5,7 +5,7 @@ const webpack = require("webpack"),
   CleanWebpackPlugin = require("clean-webpack-plugin").CleanWebpackPlugin,
   CopyWebpackPlugin = require("copy-webpack-plugin"),
   HtmlWebpackPlugin = require("html-webpack-plugin");
-  // ClosurePlugin = require("closure-webpack-plugin");
+// ClosurePlugin = require("closure-webpack-plugin");
 
 // load the secrets
 let alias = {};
@@ -39,6 +39,7 @@ const options = {
   output: {
     path: path.join(__dirname, "build"),
     filename: "[name].bundle.js",
+    publicPath: "/",
   },
   module: {
     rules: [
@@ -120,8 +121,8 @@ const options = {
     concatenateModules: true,
   },
   devServer: {
-    port: env.PORT || 3000
-  }
+    port: env.PORT || 3000,
+  },
 };
 
 if (env.NODE_ENV === "development") {

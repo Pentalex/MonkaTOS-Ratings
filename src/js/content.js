@@ -100,8 +100,8 @@ function init() {
           );
         }
 
-        upvotebutton = document.getElementById("upvote");
-        downvotebutton = document.getElementById("downvote");
+        const upvotebutton = document.getElementById("upvote");
+        const downvotebutton = document.getElementById("downvote");
         upvotebutton.addEventListener("click", upvote);
         downvotebutton.addEventListener("click", downvote);
 
@@ -136,8 +136,8 @@ function init() {
 function upvote() {
   var url = window.location.href;
   var video_id = youtube_parser(url);
-  upvotebutton = document.getElementById("upvote");
-  downvotebutton = document.getElementById("downvote");
+  const upvotebutton = document.getElementById("upvote");
+  const downvotebutton = document.getElementById("downvote");
 
   chrome.storage.sync.get(["access_token"], function (result) {
     fetch(
@@ -167,8 +167,8 @@ function refresh() {}
 function downvote() {
   var url = window.location.href;
   var video_id = youtube_parser(url);
-  upvotebutton = document.getElementById("upvote");
-  downvotebutton = document.getElementById("downvote");
+  const upvotebutton = document.getElementById("upvote");
+  const downvotebutton = document.getElementById("downvote");
 
   chrome.storage.sync.get(["access_token"], function (result) {
     fetch(

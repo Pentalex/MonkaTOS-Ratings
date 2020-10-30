@@ -1,6 +1,6 @@
 import "../css/options.css";
 
-button = document.getElementById("signin");
+const button = document.getElementById("signin");
 button.onclick = function () {
   chrome.identity.launchWebAuthFlow(
     {
@@ -11,10 +11,10 @@ button.onclick = function () {
     function (redirect_url) {
       const url = new URL(redirect_url);
 
-      authcode = url.searchParams.get("code");
+      window.authcode = url.searchParams.get("code");
 
       chrome.storage.sync.set({
-        authcode: authcode,
+        authcode: window.authcode,
       });
       console.log(authcode);
       alert("Successfully signed in! You can now close the tab.");
