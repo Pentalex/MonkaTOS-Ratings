@@ -4,7 +4,7 @@ const webpack = require("webpack"),
   env = require("./utils/env"),
   CleanWebpackPlugin = require("clean-webpack-plugin").CleanWebpackPlugin,
   CopyWebpackPlugin = require("copy-webpack-plugin"),
-  HtmlWebpackPlugin = require("html-webpack-plugin"),
+  HtmlWebpackPlugin = require("html-webpack-plugin");
   // ClosurePlugin = require("closure-webpack-plugin");
 
 // load the secrets
