@@ -1,7 +1,7 @@
 {
   "name": "TwitchTOS",
   "version": "1.0.0",
-  "description": "TODO",
+  "description": "An extension that helps you find out if the video you're watching is against Twitch terms of service or not, and lets you approve or report videos as Twitch TOS.",
   "repository": "git@github.com:ohmree/TwitchTOS.git",
   "author": "Pentalex",
   "license": "MIT",
