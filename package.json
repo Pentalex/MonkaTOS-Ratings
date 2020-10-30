@@ -2,8 +2,8 @@
   "name": "TwitchTOS",
   "version": "1.0.0",
   "description": "TODO",
-  "repository": "git@github.com:ohmree/TwitchTOS.git",
-  "author": "Not me :)",
+  "repository": "git@github.com:Pentalex/TwitchTOS.git",
+  "author": "Pentalex",
   "license": "MIT",
   "scripts": {
     "build": "webpack",
