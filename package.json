@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "TODO",
   "repository": "git@github.com:ohmree/TwitchTOS.git",
-  "author": "Not me :)",
+  "author": "Pentalex",
   "license": "MIT",
   "scripts": {
     "build": "webpack",
