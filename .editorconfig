@@ -1,0 +1,13 @@
+# More info at: http://editorconfig.org
+
+# This is the topmost .editorconfig file.
+root = true
+
+# For all files...
+[*]
+indent_style = space                # Use spaces for indentation,
+tab_width = 4                       # Make indentation 4-spaces wide,
+end_of_line = lf                    # Use Unix-style line endings,
+charset = utf-8                     # Use the UTF-8 encoding,
+trim_trailing_whitespace = true     # Remove trailing whitespaces,
+insert_final_newline = true         # And insert an empty line at the end of each file.
