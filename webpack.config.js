@@ -92,16 +92,19 @@ const options = {
             template: path.join(__dirname, "src", "popup.html"),
             filename: "popup.html",
             chunks: ["popup"],
+            cache: false,
         }),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, "src", "options.html"),
             filename: "options.html",
             chunks: ["options"],
+            cache: false,
         }),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, "src", "index.html"),
             filename: "index.html",
             chunks: ["index"],
+            cache: false,
         }),
     ],
     // optimization: {
