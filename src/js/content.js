@@ -145,7 +145,7 @@ function upvote() {
 
     chrome.storage.sync.get(["access_token"], (result) => {
         fetch(
-            `https://twitchtos.herokuapp.com/rate?video_id=${videoId}&rating-plus`,
+            `https://twitchtos.herokuapp.com/rate?video_id=${videoId}&rating=plus`,
             { headers: { Authorization: result.access_token } }
         )
             .then((r) => r.text())
