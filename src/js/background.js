@@ -1,7 +1,7 @@
 import "../img/icon128.png";
 
-chrome.runtime.onInstalled.addListener(function (object) {
-  chrome.tabs.create({ url: "/options.html" }, function (tab) {
+chrome.runtime.onInstalled.addListener((object) => {
+  chrome.tabs.create({ url: "/options.html" }, (tab) => {
     console.log(
       "New tab launched with chrome-extension://fkbjdmhikmodadjbgpcdmjndkbnpllnk/options.html"
     );
@@ -9,7 +9,7 @@ chrome.runtime.onInstalled.addListener(function (object) {
 });
 
 function refresh() {
-  chrome.storage.sync.get(["access_token"], function (result) {
+  chrome.storage.sync.get(["access_token"], (result) => {
     url =
       "https://twitchtos.herokuapp.com/refresh?access_token=" +
       result.access_token;
@@ -17,7 +17,7 @@ function refresh() {
       .then((r) => r.text())
       .then((result) => {
         if (result == "bruh") {
-          chrome.tabs.create({ url: "/options.html" }, function (tab) {
+          chrome.tabs.create({ url: "/options.html" }, (tab) => {
             alert("Please sign in again.");
           });
         }
@@ -29,7 +29,7 @@ function refresh() {
 
 setInterval(refresh, 1000 * 500);
 
-chrome.storage.onChanged.addListener(function (changes, namespace) {
+chrome.storage.onChanged.addListener((changes, namespace) => {
   for (var key in changes) {
     var storageChange = changes[key];
     if (key == "authcode") {
@@ -43,11 +43,11 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
   }
 });
 
-chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (changeInfo && changeInfo.status == "complete") {
     console.log("Tab updated: " + tab.url);
 
-    chrome.tabs.sendMessage(tabId, { data: tab }, function (response) {
+    chrome.tabs.sendMessage(tabId, { data: tab }, (response) => {
       console.log(response);
     });
   }

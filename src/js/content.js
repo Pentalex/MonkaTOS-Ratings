@@ -8,10 +8,10 @@ function youtube_parser(url) {
   return match && match[7].length == 11 ? match[7] : false;
 }
 
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   console.log("page change");
 
-  setTimeout(function () {
+  setTimeout(() => {
     init();
   }, 500);
 });
@@ -22,7 +22,7 @@ function elementLoaded(el, cb) {
     cb($(el));
   } else {
     // Repeat every 500ms.
-    setTimeout(function () {
+    setTimeout(() => {
       elementLoaded(el, cb);
     }, 500);
   }
@@ -33,7 +33,7 @@ function init() {
   var video_id = youtube_parser(url);
   console.log(video_id);
 
-  elementLoaded(".ytd-video-primary-info-renderer", function (el) {
+  elementLoaded(".ytd-video-primary-info-renderer", (el) => {
     console.log("We're on a video!");
 
     fetch("https://twitchtos.herokuapp.com/getrating?video_id=" + video_id)
@@ -139,7 +139,7 @@ function upvote() {
   const upvotebutton = document.getElementById("upvote");
   const downvotebutton = document.getElementById("downvote");
 
-  chrome.storage.sync.get(["access_token"], function (result) {
+  chrome.storage.sync.get(["access_token"], (result) => {
     fetch(
       "https://twitchtos.herokuapp.com/rate?video_id=" +
         video_id +
@@ -170,7 +170,7 @@ function downvote() {
   const upvotebutton = document.getElementById("upvote");
   const downvotebutton = document.getElementById("downvote");
 
-  chrome.storage.sync.get(["access_token"], function (result) {
+  chrome.storage.sync.get(["access_token"], (result) => {
     fetch(
       "https://twitchtos.herokuapp.com/rate?video_id=" +
         video_id +
