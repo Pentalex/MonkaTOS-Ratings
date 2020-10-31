@@ -39,6 +39,7 @@ const options = {
   output: {
     path: path.join(__dirname, "build"),
     filename: "[name].bundle.js",
+    sourceMapFilename: "[name].js.map",
     publicPath: "/",
   },
   module: {
@@ -102,31 +103,27 @@ const options = {
       chunks: ["index"],
     }),
   ],
-  optimization: {
-    minimize: true,
-    // TODO: get closure compiler working
-    // minimizer: [
-    //     new ClosurePlugin({
-    //         mode: "STANDARD",
-    //         childCompilations: true
-    //     }, {
-    //         languageOut: "ECMASCRIPT5",
-    //         compilation_level: "ADVANCED"
-    //     })
-    // ],
-    usedExports: true,
-    splitChunks: {
-      minSize: 0,
-    },
-    concatenateModules: true,
-  },
+  // optimization: {
+  // TODO: get closure compiler working
+  // minimizer: [
+  //     new ClosurePlugin({
+  //         mode: "STANDARD",
+  //         childCompilations: true
+  //     }, {
+  //         languageOut: "ECMASCRIPT5",
+  //         compilation_level: "ADVANCED"
+  //     })
+  // ],
+  // },
   devServer: {
     port: env.PORT || 3000,
   },
 };
 
 if (env.NODE_ENV === "development") {
-  options.devtool = "eval-cheap-module-source-map";
+  // This doesn't work in  chrome.
+  // options.devtool = "eval-cheap-module-source-map";
+  options.devtool = "inline-cheap-module-source-map";
 }
 
 module.exports = options;
