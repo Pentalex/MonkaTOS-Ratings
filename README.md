@@ -2,9 +2,20 @@
 
 ## Building for the browser:
 
-```sh
-NODE_ENV=production yarn build
-```
+ - On \*nix:
+  ```sh
+  NODE_ENV=production yarn build
+  ```
+   - On Windows with CMD:
+  ```bat
+  set NODE_ENV=production
+  yarn build
+  ```
+   - On Powershell:
+  ```ps1
+  $env:NODE_ENV = 'production'
+  yarn build
+  ```
 
 Then look inside the "build" folder.
 
