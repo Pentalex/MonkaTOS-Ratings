@@ -1,0 +1,22 @@
+{
+    "extends": [
+        "eslint:recommended",
+        "prettier"
+    ],
+    "env": {
+        "es6": true,
+        "browser": true,
+        "webextensions": true
+    },
+    "parser": "babel-eslint",
+    "rules": {
+        "no-unused-vars": ["error", {
+            "args": "after-used",
+            "argsIgnorePattern": "^_"
+        }],
+        "prefer-const": "error",
+        "no-var": "error",
+        "prettier/prettier": "error"
+    },
+    "plugins": ["prettier"]
+}
