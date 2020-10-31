@@ -121,7 +121,7 @@ const options = {
 };
 
 if (env.NODE_ENV === "development") {
-  // This doesn't work in  chrome.
+  // This doesn't work in chrome.
   // options.devtool = "eval-cheap-module-source-map";
   options.devtool = "inline-cheap-module-source-map";
 }
