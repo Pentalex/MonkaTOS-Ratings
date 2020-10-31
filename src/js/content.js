@@ -36,7 +36,7 @@ function init() {
     elementLoaded(".ytd-video-primary-info-renderer", (_el) => {
         console.log("We're on a video!");
 
-        fetch("https://twitchtos.herokuapp.com/getrating?video_id=" + videoId)
+        fetch(`https://twitchtos.herokuapp.com/getrating?video_id=${videoId}`)
             .then((r) => r.text())
             .then((result) => {
                 console.log(result);
@@ -145,9 +145,7 @@ function upvote() {
 
     chrome.storage.sync.get(["access_token"], (result) => {
         fetch(
-            "https://twitchtos.herokuapp.com/rate?video_id=" +
-                videoId +
-                "&rating=plus",
+            `https://twitchtos.herokuapp.com/rate?video_id=${videoId}&rating-plus`,
             { headers: { Authorization: result.access_token } }
         )
             .then((r) => r.text())
@@ -174,9 +172,7 @@ function downvote() {
 
     chrome.storage.sync.get(["access_token"], (result) => {
         fetch(
-            "https://twitchtos.herokuapp.com/rate?video_id=" +
-                videoId +
-                "&rating=minus",
+            `https://twitchtos.herokuapp.com/rate?video_id=${videoId}&rating=minus`,
             { headers: { Authorization: result.access_token } }
         )
             .then((r) => r.text())

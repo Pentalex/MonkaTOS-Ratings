@@ -10,9 +10,7 @@ chrome.runtime.onInstalled.addListener((_object) => {
 
 function refresh() {
     chrome.storage.sync.get(["access_token"], (result) => {
-        const url =
-            "https://twitchtos.herokuapp.com/refresh?access_token=" +
-            result.access_token;
+        const url = `https://twitchtos.herokuapp.com/refresh?access_token=${result.access_token}`;
         fetch(url)
             .then((r) => r.text())
             .then((result) => {
@@ -21,7 +19,7 @@ function refresh() {
                         alert("Please sign in again.");
                     });
                 }
-                console.log("Refreshing the thing " + result);
+                console.log(`Refreshing the thing ${result}`);
                 chrome.storage.sync.set({ access_token: result });
             });
     });
@@ -33,8 +31,8 @@ chrome.storage.onChanged.addListener((changes, _namespace) => {
     for (var key in changes) {
         var storageChange = changes[key];
         if (key == "authcode") {
-            const authcode = storageChange.newValue;
-            fetch("https://twitchtos.herokuapp.com/auth?authcode=" + authcode)
+            const authCode = storageChange.newValue;
+            fetch(`https://twitchtos.herokuapp.com/auth?authcode=${authCode}`)
                 .then((r) => r.text())
                 .then((result) => {
                     chrome.storage.sync.set({ access_token: result });
@@ -45,7 +43,7 @@ chrome.storage.onChanged.addListener((changes, _namespace) => {
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     if (changeInfo && changeInfo.status == "complete") {
-        console.log("Tab updated: " + tab.url);
+        console.log(`Tab updated: ${tab.url}`);
 
         chrome.tabs.sendMessage(tabId, { data: tab }, (response) => {
             console.log(response);
