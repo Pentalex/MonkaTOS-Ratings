@@ -28,8 +28,8 @@ function refresh() {
 setInterval(refresh, 1000 * 500);
 
 chrome.storage.onChanged.addListener((changes, _namespace) => {
-    for (var key in changes) {
-        var storageChange = changes[key];
+    for (const key in changes) {
+        const storageChange = changes[key];
         if (key == "authcode") {
             const authCode = storageChange.newValue;
             fetch(`https://twitchtos.herokuapp.com/auth?authcode=${authCode}`)

@@ -3,8 +3,8 @@ import "../img/downvote.png";
 import "../img/upvote.png";
 
 function youtubeParser(url) {
-    var regexp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
-    var match = url.match(regexp);
+    const regexp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+    const match = url.match(regexp);
     return match && match[7].length == 11 ? match[7] : false;
 }
 
@@ -29,8 +29,8 @@ function elementLoaded(el, cb) {
 }
 
 function init() {
-    var url = window.location.href;
-    var videoId = youtubeParser(url);
+    const url = window.location.href;
+    const videoId = youtubeParser(url);
     console.log(videoId);
 
     elementLoaded(".ytd-video-primary-info-renderer", (_el) => {
@@ -51,7 +51,7 @@ function init() {
                     scoreText = "Good";
                 }
 
-                var el = document.getElementsByClassName(
+                const el = document.getElementsByClassName(
                     "ytd-video-primary-info-renderer"
                 )[0].children[5].children[1];
                 console.log(
@@ -138,8 +138,8 @@ function init() {
 }
 
 function upvote() {
-    var url = window.location.href;
-    var videoId = youtubeParser(url);
+    const url = window.location.href;
+    const videoId = youtubeParser(url);
     const upvoteButton = document.getElementById("upvote");
     const downvoteButton = document.getElementById("downvote");
 
@@ -165,8 +165,8 @@ function upvote() {
 }
 
 function downvote() {
-    var url = window.location.href;
-    var videoId = youtubeParser(url);
+    const url = window.location.href;
+    const videoId = youtubeParser(url);
     const upvoteButton = document.getElementById("upvote");
     const downvoteButton = document.getElementById("downvote");
 

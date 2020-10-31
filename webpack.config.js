@@ -9,7 +9,7 @@ const webpack = require("webpack"),
 // ClosurePlugin = require("closure-webpack-plugin");
 
 // load the secrets
-let alias = {};
+const alias = {};
 
 const secretsPath = path.join(__dirname, "secrets." + env.NODE_ENV + ".js");
 
