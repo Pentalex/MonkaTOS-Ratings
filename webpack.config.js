@@ -1,4 +1,4 @@
-/* eslint-env node, mocha */
+/* eslint-env node */
 const webpack = require("webpack"),
     path = require("path"),
     fileSystem = require("fs"),
