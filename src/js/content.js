@@ -2,9 +2,9 @@ import $ from "jquery";
 import "../img/downvote.png";
 import "../img/upvote.png";
 
-function youtube_parser(url) {
-    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
-    var match = url.match(regExp);
+function youtubeParser(url) {
+    var regexp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+    var match = url.match(regexp);
     return match && match[7].length == 11 ? match[7] : false;
 }
 
@@ -30,25 +30,25 @@ function elementLoaded(el, cb) {
 
 function init() {
     var url = window.location.href;
-    var video_id = youtube_parser(url);
-    console.log(video_id);
+    var videoId = youtubeParser(url);
+    console.log(videoId);
 
     elementLoaded(".ytd-video-primary-info-renderer", (_el) => {
         console.log("We're on a video!");
 
-        fetch("https://twitchtos.herokuapp.com/getrating?video_id=" + video_id)
+        fetch("https://twitchtos.herokuapp.com/getrating?video_id=" + videoId)
             .then((r) => r.text())
             .then((result) => {
                 console.log(result);
-                let scoretxt;
+                let scoreText;
                 if (parseInt(result) > 0 && parseInt(result) < 3) {
-                    scoretxt = "Decent";
+                    scoreText = "Decent";
                 } else if (parseInt(result) < 0 && parseInt(result) > -3) {
-                    scoretxt = "Bad";
+                    scoreText = "Bad";
                 } else if (parseInt(result) < -3) {
-                    scoretxt = "Terrible";
+                    scoreText = "Terrible";
                 } else if (parseInt(result) > 3) {
-                    scoretxt = "Good";
+                    scoreText = "Good";
                 }
 
                 var el = document.getElementsByClassName(
@@ -96,16 +96,16 @@ function init() {
                height="24"
                id="downvote" />
           <p id="tos" style="float: left;  padding 5px;">
-              TOS Score: <span id='scoretext'>${scoretxt}(${result})</span>
+              TOS Score: <span id='scoretext'>${scoreText}(${result})</span>
           </p>
           `
                     );
                 }
 
-                const upvotebutton = document.getElementById("upvote");
-                const downvotebutton = document.getElementById("downvote");
-                upvotebutton.addEventListener("click", upvote);
-                downvotebutton.addEventListener("click", downvote);
+                const upvoteButton = document.getElementById("upvote");
+                const downvoteButton = document.getElementById("downvote");
+                upvoteButton.addEventListener("click", upvote);
+                downvoteButton.addEventListener("click", downvote);
 
                 if (
                     window.matchMedia &&
@@ -119,18 +119,18 @@ function init() {
 
                 document.getElementById("tos").style.paddingTop = "7px";
 
-                if (scoretxt == "Good") {
+                if (scoreText == "Good") {
                     document.getElementById("scoretext").style.color = "Green";
                 }
-                if (scoretxt == "Decent") {
+                if (scoreText == "Decent") {
                     document.getElementById("scoretext").style.color =
                         "GreenYellow";
                 }
-                if (scoretxt == "Bad") {
+                if (scoreText == "Bad") {
                     document.getElementById("scoretext").style.color =
                         "IndianRed";
                 }
-                if (scoretxt == "Terrible") {
+                if (scoreText == "Terrible") {
                     document.getElementById("scoretext").style.color = "Red";
                 }
             });
@@ -139,14 +139,14 @@ function init() {
 
 function upvote() {
     var url = window.location.href;
-    var video_id = youtube_parser(url);
-    const upvotebutton = document.getElementById("upvote");
-    const downvotebutton = document.getElementById("downvote");
+    var videoId = youtubeParser(url);
+    const upvoteButton = document.getElementById("upvote");
+    const downvoteButton = document.getElementById("downvote");
 
     chrome.storage.sync.get(["access_token"], (result) => {
         fetch(
             "https://twitchtos.herokuapp.com/rate?video_id=" +
-                video_id +
+                videoId +
                 "&rating=plus",
             { headers: { Authorization: result.access_token } }
         )
@@ -157,9 +157,9 @@ function upvote() {
                     alert("You have already upvoted this video!");
                     return;
                 } else {
-                    downvotebutton.parentNode.removeChild(downvotebutton);
-                    upvotebutton.style.outline = "auto";
-                    upvotebutton.style.outlineOffset = "-4px";
+                    downvoteButton.parentNode.removeChild(downvoteButton);
+                    upvoteButton.style.outline = "auto";
+                    upvoteButton.style.outlineOffset = "-4px";
                     console.log("Upvoted!");
                 }
             });
@@ -168,14 +168,14 @@ function upvote() {
 
 function downvote() {
     var url = window.location.href;
-    var video_id = youtube_parser(url);
-    const upvotebutton = document.getElementById("upvote");
-    const downvotebutton = document.getElementById("downvote");
+    var videoId = youtubeParser(url);
+    const upvoteButton = document.getElementById("upvote");
+    const downvoteButton = document.getElementById("downvote");
 
     chrome.storage.sync.get(["access_token"], (result) => {
         fetch(
             "https://twitchtos.herokuapp.com/rate?video_id=" +
-                video_id +
+                videoId +
                 "&rating=minus",
             { headers: { Authorization: result.access_token } }
         )
@@ -185,9 +185,9 @@ function downvote() {
                     alert("You have already downvoted this video!");
                     return;
                 } else {
-                    upvotebutton.parentNode.removeChild(upvotebutton);
-                    downvotebutton.style.outline = "auto";
-                    downvotebutton.style.outlineOffset = "-4px";
+                    upvoteButton.parentNode.removeChild(upvoteButton);
+                    downvoteButton.style.outline = "auto";
+                    downvoteButton.style.outlineOffset = "-4px";
                     console.log("Downvoted!");
                 }
             });
