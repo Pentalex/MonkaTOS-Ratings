@@ -32,10 +32,11 @@ function init() {
     const url = window.location.href;
     const videoId = youtubeParser(url);
     console.log(videoId);
+    if(videoId == false){
+        return
+    }
 
     elementLoaded(".ytd-video-primary-info-renderer", (_el) => {
-        console.log("We're on a video!");
-
         fetch(`https://twitchtos.herokuapp.com/getrating?video_id=${videoId}`)
             .then((r) => r.text())
             .then((result) => {
@@ -65,7 +66,25 @@ function init() {
                     "beforeend",
                     '<div class="toscontainer"></div>'
                 );
-                if (result == "0") {
+
+                if (result == "approved") {
+                    $(".toscontainer").append(
+                        `
+        <img style="float: left;padding: 5px;"
+             src="${chrome.extension.getURL("upvote.png")}"
+             width="24"
+             height="24"
+             id="upvote" />
+        <img style="float: left;display: none;"
+             src="${chrome.extension.getURL("downvote.png")}"
+             width="24"
+             height="24"
+             id="downvote" />
+        <p id="tos" style="float: left;  padding 5px;">The creator of this video is guaranteed to be TOS friendly.</span></p>
+        `
+                    );
+                } 
+                else if (result == "0") {
                     $(".toscontainer").append(
                         `
         <img style="cursor: pointer; float: left;padding: 5px;"
@@ -81,7 +100,12 @@ function init() {
         <p id="tos" style="float: left;  padding 5px;">This video hasn't been rated.</span></p>
         `
                     );
-                } else {
+                } 
+                
+                
+                
+                
+                else {
                     $(".toscontainer").empty();
                     $(".toscontainer").append(
                         `
@@ -118,6 +142,10 @@ function init() {
                 document.getElementById("tos").style.fontSize = "medium";
 
                 document.getElementById("tos").style.paddingTop = "7px";
+
+                if (result == "approved"){
+                    document.getElementById("tos").style.color = "Green"
+                }
 
                 if (scoreText == "Good") {
                     document.getElementById("scoretext").style.color = "Green";
@@ -169,7 +197,7 @@ function downvote() {
     const videoId = youtubeParser(url);
     const upvoteButton = document.getElementById("upvote");
     const downvoteButton = document.getElementById("downvote");
-
+    
     chrome.storage.sync.get(["access_token"], (result) => {
         fetch(
             `https://twitchtos.herokuapp.com/rate?video_id=${videoId}&rating=minus`,

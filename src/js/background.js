@@ -2,9 +2,6 @@ import "../img/icon128.png";
 
 chrome.runtime.onInstalled.addListener((_object) => {
     chrome.tabs.create({ url: "/options.html" }, (_tab) => {
-        console.log(
-            "New tab launched with chrome-extension://fkbjdmhikmodadjbgpcdmjndkbnpllnk/options.html"
-        );
     });
 });
 
@@ -43,7 +40,6 @@ chrome.storage.onChanged.addListener((changes, _namespace) => {
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     if (changeInfo && changeInfo.status == "complete") {
-        console.log(`Tab updated: ${tab.url}`);
 
         chrome.tabs.sendMessage(tabId, { data: tab }, (response) => {
             console.log(response);
