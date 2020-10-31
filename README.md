@@ -1,5 +1,11 @@
 # TwitchTOS
 
+## Hacking:
+First install the dependencies:
+```sh
+yarn
+```
+
 ## Building for the browser:
 
  - On \*nix:
