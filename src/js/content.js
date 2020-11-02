@@ -187,6 +187,7 @@ function upvote() {
                     upvoteButton.style.outline = "auto";
                     upvoteButton.style.outlineOffset = "-4px";
                     console.log("Upvoted!");
+                    init();
                 }
             });
     });
@@ -213,6 +214,7 @@ function downvote() {
                     downvoteButton.style.outline = "auto";
                     downvoteButton.style.outlineOffset = "-4px";
                     console.log("Downvoted!");
+                    init();
                 }
             });
     });
