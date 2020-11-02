@@ -16,8 +16,10 @@ function refresh() {
                         alert("Please sign in again.");
                     });
                 }
-                console.log(`Refreshing the thing ${result}`);
-                chrome.storage.sync.set({ access_token: result });
+                else{
+                    chrome.storage.sync.set({ access_token: result });
+                    console.log(`Refreshing the thing ${result}`);
+                }
             });
     });
 }
