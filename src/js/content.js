@@ -2,6 +2,8 @@ import $ from "jquery";
 import "../img/downvote.png";
 import "../img/upvote.png";
 
+console.log('Running script')
+
 function youtubeParser(url) {
     const regexp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
     const match = url.match(regexp);
@@ -179,15 +181,17 @@ function upvote() {
             .then((r) => r.text())
             .then((result) => {
                 console.log(result);
-                if (result == "found") {
+                if (result === "found") {
                     alert("You have already upvoted this video!");
                     return;
-                } else {
+                } else if(result === "Successfuly rated video!"){
+                    console.log(result);
                     downvoteButton.parentNode.removeChild(downvoteButton);
                     upvoteButton.style.outline = "auto";
                     upvoteButton.style.outlineOffset = "-4px";
-                    console.log("Upvoted!");
                     init();
+                } else{
+                    alert("Failed to upvote video, please try signing in again.")
                 }
             });
     });
@@ -206,15 +210,17 @@ function downvote() {
         )
             .then((r) => r.text())
             .then((result) => {
-                if (result == "found") {
+                if (result === "found") {
                     alert("You have already downvoted this video!");
                     return;
-                } else {
+                } else if(result === "Successfuly rated video!") {
+                    console.log(result)
                     upvoteButton.parentNode.removeChild(upvoteButton);
                     downvoteButton.style.outline = "auto";
                     downvoteButton.style.outlineOffset = "-4px";
-                    console.log("Downvoted!");
                     init();
+                } else{
+                    alert("Failed to downvote video, please try signing in again.")
                 }
             });
     });
