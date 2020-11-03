@@ -2,7 +2,7 @@ import $ from "jquery";
 import "../img/downvote.png";
 import "../img/upvote.png";
 
-console.log('Running script')
+console.log("Running script");
 
 function youtubeParser(url) {
     const regexp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
@@ -34,8 +34,8 @@ function init() {
     const url = window.location.href;
     const videoId = youtubeParser(url);
     console.log(videoId);
-    if(videoId == false){
-        return
+    if (videoId == false) {
+        return;
     }
 
     elementLoaded(".ytd-video-primary-info-renderer", (_el) => {
@@ -85,8 +85,7 @@ function init() {
         <p id="tos" style="float: left;  padding 5px;">The creator of this video is guaranteed to be TOS friendly.</span></p>
         `
                     );
-                } 
-                else if (result == "0") {
+                } else if (result == "0") {
                     $(".toscontainer").append(
                         `
         <img style="cursor: pointer; float: left;padding: 5px;"
@@ -102,12 +101,7 @@ function init() {
         <p id="tos" style="float: left;  padding 5px;">This video hasn't been rated.</span></p>
         `
                     );
-                } 
-                
-                
-                
-                
-                else {
+                } else {
                     $(".toscontainer").empty();
                     $(".toscontainer").append(
                         `
@@ -145,8 +139,8 @@ function init() {
 
                 document.getElementById("tos").style.paddingTop = "7px";
 
-                if (result == "approved"){
-                    document.getElementById("tos").style.color = "Green"
+                if (result == "approved") {
+                    document.getElementById("tos").style.color = "Green";
                 }
 
                 if (scoreText == "Good") {
@@ -184,14 +178,16 @@ function upvote() {
                 if (result === "found") {
                     alert("You have already upvoted this video!");
                     return;
-                } else if(result === "Successfuly rated video!"){
+                } else if (result === "Successfuly rated video!") {
                     console.log(result);
                     downvoteButton.parentNode.removeChild(downvoteButton);
                     upvoteButton.style.outline = "auto";
                     upvoteButton.style.outlineOffset = "-4px";
                     init();
-                } else{
-                    alert("Failed to upvote video, please try signing in again.")
+                } else {
+                    alert(
+                        "Failed to upvote video, please try signing in again."
+                    );
                 }
             });
     });
@@ -202,7 +198,7 @@ function downvote() {
     const videoId = youtubeParser(url);
     const upvoteButton = document.getElementById("upvote");
     const downvoteButton = document.getElementById("downvote");
-    
+
     chrome.storage.sync.get(["access_token"], (result) => {
         fetch(
             `https://twitchtos.herokuapp.com/rate?video_id=${videoId}&rating=minus`,
@@ -213,14 +209,16 @@ function downvote() {
                 if (result === "found") {
                     alert("You have already downvoted this video!");
                     return;
-                } else if(result === "Successfuly rated video!") {
-                    console.log(result)
+                } else if (result === "Successfuly rated video!") {
+                    console.log(result);
                     upvoteButton.parentNode.removeChild(upvoteButton);
                     downvoteButton.style.outline = "auto";
                     downvoteButton.style.outlineOffset = "-4px";
                     init();
-                } else{
-                    alert("Failed to downvote video, please try signing in again.")
+                } else {
+                    alert(
+                        "Failed to downvote video, please try signing in again."
+                    );
                 }
             });
     });

@@ -1,8 +1,7 @@
 import "../img/icon128.png";
 
 chrome.runtime.onInstalled.addListener((_object) => {
-    chrome.tabs.create({ url: "/options.html" }, (_tab) => {
-    });
+    chrome.tabs.create({ url: "/options.html" }, (_tab) => {});
 });
 
 function refresh() {
@@ -15,8 +14,7 @@ function refresh() {
                     chrome.tabs.create({ url: "/options.html" }, (_tab) => {
                         alert("Please sign in again.");
                     });
-                }
-                else{
+                } else {
                     chrome.storage.sync.set({ access_token: result });
                     console.log(`Refreshing the thing ${result}`);
                 }
@@ -42,8 +40,6 @@ chrome.storage.onChanged.addListener((changes, _namespace) => {
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     if (changeInfo && changeInfo.status == "complete") {
-
-        chrome.tabs.sendMessage(tabId, { data: tab }, (response) => {
-        });
+        chrome.tabs.sendMessage(tabId, { data: tab }, () => {});
     }
 });

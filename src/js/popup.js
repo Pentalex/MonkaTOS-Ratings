@@ -1,6 +1,5 @@
 import "../css/options.css";
 
-
 const button = document.getElementById("signin");
 button.onclick = () => {
     chrome.identity.launchWebAuthFlow(
@@ -17,8 +16,6 @@ button.onclick = () => {
             chrome.storage.sync.set({
                 authcode: authCode,
             });
-
-
         }
     );
 };
