@@ -1,5 +1,10 @@
 import "../css/popup.css";
+import "../img/18px_level1.png";
+import "../img/18px_level2.png";
+import "../img/18px_level3.png";
+import "../img/18px_donator.png";
 
+const levels = [0, 100, 250, 400, 650];
 const button = document.getElementById("signin");
 button.onclick = () => {
     chrome.identity.launchWebAuthFlow(
@@ -39,21 +44,44 @@ chrome.storage.sync.get(["logged_in"], (result) => {
                         chrome.storage.sync.set({ logged_in: false });
                     }
                     const data = JSON.parse(result);
-                    console.log(data.userLevel);
+                    const XP = data.userVoteExp;
+                    const userVoteLevel = data.userVoteLevel;
+                    const nextlevel = levels[userVoteLevel];
+                    const percentage = (XP / nextlevel) * 100;
+                    console.log(data);
 
                     const userField = document.getElementById("user");
                     const imageField = document.getElementById("image");
                     const levelField = document.getElementById("level");
                     const logOut = document.getElementById("logout");
+                    const xpbar = document.getElementById("xp");
+                    const ratedvids = document.getElementById("ratedvids");
+                    const xpbarvisibility = document.getElementById("xpbar");
+                    const badge = document.getElementById("badge");
 
                     userField.innerHTML = data.userName;
                     imageField.src = data.userPicture;
+                    if (userVoteLevel === 99) {
+                        xpbar.style.width = "100%";
+                        ratedvids.innerHTML = "Donator";
+                        xpbar.innerHTML = `(Donator <3)`;
+                        badge.src = chrome.extension.getURL("18px_donator.png");
+                    } else {
+                        xpbar.style.width = `${percentage}%`;
+                        ratedvids.innerHTML = `${userVoteLevel} (${XP}/${nextlevel}XP)`;
+                        xpbar.innerHTML = `(${XP}/${nextlevel}XP)`;
+                        badge.src = chrome.extension.getURL(
+                            `18px_level${userVoteLevel}.png`
+                        );
+                    }
 
                     if (data.userLevel === "") {
                         levelField.innerHTML = "User";
                     } else {
                         levelField.innerHTML = data.userLevel;
                     }
+
+                    xpbarvisibility.style.removeProperty("display");
                     profile.style.removeProperty("display");
                     logOut.onclick = function () {
                         chrome.storage.sync.set({ logged_in: false });

@@ -1,6 +1,11 @@
+/* eslint-disable no-undef */
 import $ from "jquery";
 import "../img/downvote.png";
 import "../img/upvote.png";
+import "../img/18px_level1.png";
+import "../img/18px_level2.png";
+import "../img/18px_level3.png";
+import "../img/18px_donator.png";
 
 console.log("Running script");
 
@@ -224,4 +229,100 @@ function downvote() {
                 }
             });
     });
+}
+
+//Special credits to RavenBtw
+if (window.location.href.indexOf("twitch")) {
+    if (!document.querySelector(".pentalexDiv")) {
+        const pentalexDiv = document.createElement("div");
+        pentalexDiv.classList.add("pentalexDiv");
+        document.body.appendChild(pentalexDiv);
+
+        fetch("https://twitchtos.herokuapp.com/users")
+            .then((data) => data.json())
+            .then((json) => {
+                console.log(json);
+                const subStylesheet = document.createElement("style");
+                document.head.appendChild(subStylesheet);
+                json.forEach((subscriber) => {
+                    pentalexBadges.push([
+                        subscriber.userName.toLowerCase(),
+                        subscriber.userVoteLevel,
+                    ]);
+                    console.log(pentalexBadges);
+                });
+                let chatDiv;
+                const chatObserver = new MutationObserver((mutations) => {
+                    function finder(username) {
+                        for (let i = 0; i < json.length; i++) {
+                            if (json[i].userName.toLowerCase() === username) {
+                                return json[i].userVoteLevel;
+                            } else {
+                                return false;
+                            }
+                        }
+                    }
+
+                    for (const mutation in mutations) {
+                        if (mutations[mutation].addedNodes.length) {
+                            let username;
+                            if (
+                                mutations[mutation].addedNodes[0].querySelector(
+                                    "[data-a-user]"
+                                )
+                            ) {
+                                username = mutations[
+                                    mutation
+                                ].addedNodes[0].querySelector("[data-a-user]")
+                                    .dataset.aUser;
+                            } else {
+                                username =
+                                    mutations[mutation].addedNodes[0].dataset
+                                        .user;
+                            }
+
+                            // eslint-disable-next-line no-var
+                            var foundUserLevel = finder(username);
+                            if (foundUserLevel) {
+                                if (foundUserLevel === 99) {
+                                    console.log("Username found");
+                                    mutations[mutation].addedNodes[0]
+                                        .querySelector(".chat-line__username")
+                                        .insertAdjacentHTML(
+                                            "beforebegin",
+                                            `<a title="TwitchTOS Donator <3" href="https://chrome.google.com/webstore/detail/monkatos-ratings/iecemifilihdioifbjkecacedfgfbfpl" target="_blank"><img src="${chrome.extension.getURL(
+                                                "18px_donator.png"
+                                            )}" class="chat-badge"></a>`
+                                        );
+                                } else {
+                                    console.log("Username found");
+                                    mutations[mutation].addedNodes[0]
+                                        .querySelector(".chat-line__username")
+                                        .insertAdjacentHTML(
+                                            "beforebegin",
+                                            `<a title="TwitchTOS Level ${foundUserLevel}" href="https://chrome.google.com/webstore/detail/monkatos-ratings/iecemifilihdioifbjkecacedfgfbfpl" target="_blank"><img src="${chrome.extension.getURL(
+                                                `18px_level${foundUserLevel}.png`
+                                            )}" class="chat-badge"></a>`
+                                        );
+                                }
+                            }
+                        }
+                    }
+                });
+                setInterval(() => {
+                    const currentChatDiv = document.querySelector(
+                        ".chat-scrollable-area__message-container"
+                    );
+                    if (currentChatDiv && chatDiv !== currentChatDiv) {
+                        chatDiv = document.querySelector(
+                            ".chat-scrollable-area__message-container"
+                        );
+                        chatObserver.disconnect();
+                        chatObserver.observe(chatDiv, {
+                            childList: true,
+                        });
+                    }
+                }, 1000);
+            });
+    }
 }

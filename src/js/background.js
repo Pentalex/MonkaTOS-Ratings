@@ -11,10 +11,7 @@ function refresh() {
             .then((r) => r.text())
             .then((result) => {
                 if (result == "bruh") {
-                    chrome.tabs.create({ url: "/options.html" }, (_tab) => {
-                        alert("Please sign in again.");
-                        chrome.storage.sync.set({ logged_in: false });
-                    });
+                    chrome.storage.sync.set({ logged_in: false });
                 } else {
                     chrome.storage.sync.set({ access_token: result });
                     console.log(`Refreshing the thing ${result}`);
