@@ -1,0 +1,51 @@
+@import url("bootswatch/dist/cyborg/bootstrap.min.css");
+
+body {
+  font-size: 80%;
+}
+
+#button {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+}
+
+
+
+
+.flex-center {
+  margin: 40px auto;
+  color: white;
+  border: 10px solid white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 200px;
+  resize: vertical;
+  overflow: auto;
+}
+
+.flex-center p {
+  margin: 0;
+  padding: 20px;
+}
+
+#profilepic{
+    padding: 5px;
+}
+#user{
+    margin-bottom:0;
+    margin-right:5px;
+    margin-left:3px;
+}
+#level{
+    margin-bottom:0;
+    margin-left:3px;
+}
+#rated{
+    margin-left:3px;
+}

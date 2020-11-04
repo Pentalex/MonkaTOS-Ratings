@@ -13,6 +13,7 @@ function refresh() {
                 if (result == "bruh") {
                     chrome.tabs.create({ url: "/options.html" }, (_tab) => {
                         alert("Please sign in again.");
+                        chrome.storage.sync.set({ logged_in: false });
                     });
                 } else {
                     chrome.storage.sync.set({ access_token: result });
@@ -33,6 +34,8 @@ chrome.storage.onChanged.addListener((changes, _namespace) => {
                 .then((r) => r.text())
                 .then((result) => {
                     chrome.storage.sync.set({ access_token: result });
+                    chrome.storage.sync.set({ logged_in: true });
+                    console.log("Logged in");
                 });
         }
     }

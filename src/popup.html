@@ -6,16 +6,30 @@
          body {
              min-width: 200px;
              max-width: 200px;
-             min-height: 80px;
-             max-height: 80px;
+             min-height: 60px;
+             max-height: 60px;
          }
          #button {
             white-space: nowrap;
          }
         </style>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
     <body>
-        <p id="button"><button class="btn btn-info" id='signin'>Sign in with Twitch!</button></p>
+        <div id="profile" style="display:none; padding: 5px;">
+            <img id="image" class="rounded left" style="height: 50px; width: 50px; border-radius: 5px; display: flex; float: left;">
+            <strong><p id="user" style="display: inline-block; color: white;">Username Here</p></strong>
+            <p id="level" style="display: inline-block;">(Affiliate)</p>
+            <!--<p id="rated" style="display: inline-block;">Videos rated: <span id="ratedvids"></span></p> 
+            TODO: LEVELING SYSTEM
+            -->
+            <button id="logout" type="button" class="btn btn-default btn-sm" style="padding-top: 5px;">
+                <i class="fa fa-sign-out" style="font-size:12px"></i> Sign out
+            </button>
+        </div>
+        
+        
+        <p id="button" style="display:none"><button class="btn btn-info" id='signin'>Sign in with Twitch!</button></p>
     </body>
 </html>

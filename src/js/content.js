@@ -188,6 +188,7 @@ function upvote() {
                     alert(
                         "Failed to upvote video, please try signing in again."
                     );
+                    chrome.storage.sync.set({ logged_in: false });
                 }
             });
     });
@@ -219,6 +220,7 @@ function downvote() {
                     alert(
                         "Failed to downvote video, please try signing in again."
                     );
+                    chrome.storage.sync.set({ logged_in: false });
                 }
             });
     });
