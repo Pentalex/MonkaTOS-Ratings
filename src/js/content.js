@@ -53,9 +53,9 @@ function init() {
                     scoreText = "Decent";
                 } else if (parseInt(result) < 0 && parseInt(result) > -3) {
                     scoreText = "Bad";
-                } else if (parseInt(result) < -3) {
+                } else if (parseInt(result) <= -3) {
                     scoreText = "Terrible";
-                } else if (parseInt(result) > 3) {
+                } else if (parseInt(result) >= 3) {
                     scoreText = "Good";
                 }
 

@@ -31,7 +31,6 @@ button.onclick = () => {
 };
 
 chrome.storage.sync.get(["logged_in"], (result) => {
-    console.log(result);
     if (result.logged_in) {
         const profile = document.getElementById("profile");
 
@@ -60,6 +59,7 @@ chrome.storage.sync.get(["logged_in"], (result) => {
                     const ratedvids = document.getElementById("ratedvids");
                     const xpbarvisibility = document.getElementById("xpbar");
                     const badge = document.getElementById("badge");
+                    const xp = document.getElementById("xp");
 
                     userField.innerHTML = data.userName;
                     imageField.src = data.userPicture;
@@ -71,7 +71,9 @@ chrome.storage.sync.get(["logged_in"], (result) => {
                     } else {
                         xpbar.style.width = `${percentage}%`;
                         ratedvids.innerHTML = `${userVoteLevel} (${XP}/${nextlevel}XP)`;
-                        xpbar.innerHTML = `(${XP}/${nextlevel}XP)`;
+                        if (percentage >= 30) {
+                            xp.innerHTML = `(${XP}/${nextlevel}XP)`;
+                        }
                         badge.src = chrome.extension.getURL(
                             `18px_level${userVoteLevel}.png`
                         );
