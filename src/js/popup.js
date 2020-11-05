@@ -44,13 +44,13 @@ chrome.storage.sync.get(["logged_in"], (result) => {
                         chrome.storage.sync.set({ logged_in: false });
                         const error = document.getElementById("error");
                         error.style.removeProperty("display");
+                        return;
                     }
                     const data = JSON.parse(result);
                     const XP = data.userVoteExp;
                     const userVoteLevel = data.userVoteLevel;
                     const nextlevel = levels[userVoteLevel];
                     const percentage = (XP / nextlevel) * 100;
-                    console.log(data);
 
                     const userField = document.getElementById("user");
                     const imageField = document.getElementById("image");
