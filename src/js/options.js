@@ -1,6 +1,7 @@
+import "bootstrap/js/dist/carousel";
+
 import "../css/options.css";
 
-import "bootswatch";
 const button = document.getElementById("signin");
 const donate = document.getElementById("donate");
 
