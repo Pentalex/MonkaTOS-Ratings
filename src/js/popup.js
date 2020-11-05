@@ -87,8 +87,6 @@ chrome.storage.sync.get(["logged_in"], (result) => {
                         chrome.storage.sync.set({ logged_in: false });
                         location.reload();
                     };
-
-                    //TODO: Function to fetch amount of votes/XP depending on system used and a level.
                 });
             });
         });

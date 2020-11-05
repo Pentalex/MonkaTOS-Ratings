@@ -1,4 +1,5 @@
-@import url("bootswatch/dist/cyborg/bootstrap.min.css");
+/* @import url("bootswatch/dist/cyborg/bootstrap.min.css"); */
+@import url("bootstrap/dist/css/bootstrap.min.css");
 
 body {
   font-size: 80%;
@@ -19,25 +20,53 @@ button {
   display: block;
 }
 
-div {
-  background: white;
-  width: 240px;
-  margin: 20px;
+
+
+
+
+
+
+.heart-shape:before{
+  color: rgb(194, 194, 194);
+  opacity: 30%;
+	content: "\2764";
+	font-size: 3em;
+	position: fixed;
+  right: 0.3em;
+  bottom: 0;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.heart-shape:hover:before{
+  color: rgb(255, 54, 54);
+  opacity: 100%;
 }
 
-.flex-center {
-  margin: 40px auto;
-  color: white;
-  border: 10px solid white;
+.card {
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
+}
+.carousel {
+  margin: 0 auto;
+  float: none;
+  margin-bottom: 10px;
+}
+
+.centered{
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  height: 200px;
-  resize: vertical;
-  overflow: auto;
+  margin-top: 31px;
+  height: 46px;
 }
 
-.flex-center p {
-  margin: 0;
-  padding: 20px;
+h4 {
+  padding:5px;
+}
+
+.center {
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
 }

@@ -1,6 +1,10 @@
 import "../css/options.css";
+import $ from "jquery";
+import "bootstrap";
 
 const button = document.getElementById("signin");
+const donate = document.getElementById("donate");
+
 button.onclick = () => {
     chrome.identity.launchWebAuthFlow(
         {
@@ -20,4 +24,8 @@ button.onclick = () => {
             alert("Successfully signed in! You can now close the tab.");
         }
     );
+};
+
+donate.onclick = () => {
+    window.open("https://paypal.me/alex4160", "_blank");
 };

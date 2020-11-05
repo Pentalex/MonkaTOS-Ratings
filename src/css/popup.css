@@ -25,7 +25,12 @@ body {
   color: white; /* White text color */
 }
 
-
+.card {
+  min-height: 70%;
+  max-height: 70%;
+    min-height: 70%;
+  max-height: 70%;
+}
 
 .flex-center {
   margin: 40px auto;
