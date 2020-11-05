@@ -1,5 +1,4 @@
 import "../css/options.css";
-import $ from "jquery";
 import "bootstrap";
 
 const button = document.getElementById("signin");
