@@ -4,7 +4,7 @@ import "../img/18px_level2.png";
 import "../img/18px_level3.png";
 import "../img/18px_donator.png";
 
-const levels = [0, 100, 250, 400, 650];
+const levels = [0, 100, 400, 800, 1000];
 const button = document.getElementById("signin");
 button.onclick = () => {
     chrome.identity.launchWebAuthFlow(

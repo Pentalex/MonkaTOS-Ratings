@@ -244,13 +244,6 @@ if (window.location.href.indexOf("twitch")) {
                 console.log(json);
                 const subStylesheet = document.createElement("style");
                 document.head.appendChild(subStylesheet);
-                json.forEach((subscriber) => {
-                    pentalexBadges.push([
-                        subscriber.userName.toLowerCase(),
-                        subscriber.userVoteLevel,
-                    ]);
-                    console.log(pentalexBadges);
-                });
                 let chatDiv;
                 const chatObserver = new MutationObserver((mutations) => {
                     function finder(username) {

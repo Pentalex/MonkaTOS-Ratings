@@ -1,27 +1,26 @@
-/* @import url("bootswatch/dist/cyborg/bootstrap.min.css"); */
-@import url("bootstrap/dist/css/bootstrap.min.css");
+@import url("bootswatch/dist/cyborg/bootstrap.min.css"); 
+/*@import url("bootstrap/dist/css/bootstrap.min.css"); */
 
 body {
   font-size: 80%;
-}
-
-#button {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-
-}
-
-button {
-  margin: 0 auto;
-  display: block;
+  background-color: rgb(53, 53, 53)
 }
 
 
 
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 20px;
+  width: 20px;
+  color:black;
+  background-size: 100%, 100%;
+  border-radius: 50%;
+  font-size: 55px;
+
+
+
+}
 
 
 

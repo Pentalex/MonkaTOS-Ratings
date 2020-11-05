@@ -1,6 +1,6 @@
 import "../css/options.css";
-import "bootstrap";
 
+import "bootswatch";
 const button = document.getElementById("signin");
 const donate = document.getElementById("donate");
 
