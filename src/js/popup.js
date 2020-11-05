@@ -42,6 +42,8 @@ chrome.storage.sync.get(["logged_in"], (result) => {
                 result.text().then(function (result) {
                     if (result === "not found") {
                         chrome.storage.sync.set({ logged_in: false });
+                        const error = document.getElementById("error");
+                        error.style.removeProperty("display");
                     }
                     const data = JSON.parse(result);
                     const XP = data.userVoteExp;
