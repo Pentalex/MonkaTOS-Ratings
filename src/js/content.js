@@ -247,11 +247,11 @@ if (window.location.href.indexOf("twitch")) {
                 let chatDiv;
                 const chatObserver = new MutationObserver((mutations) => {
                     function finder(username) {
+                        console.log(json.length);
                         for (let i = 0; i < json.length; i++) {
+                            console.log(i);
                             if (json[i].userName.toLowerCase() === username) {
                                 return json[i].userVoteLevel;
-                            } else {
-                                return false;
                             }
                         }
                     }
@@ -273,7 +273,7 @@ if (window.location.href.indexOf("twitch")) {
                                     mutations[mutation].addedNodes[0].dataset
                                         .user;
                             }
-
+                            console.log(username);
                             // eslint-disable-next-line no-var
                             var foundUserLevel = finder(username);
                             if (foundUserLevel) {
