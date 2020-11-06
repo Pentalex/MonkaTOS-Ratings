@@ -35,4 +35,4 @@ jobs:
         uses: thedoctor0/zip-release@master
         with:
           filename: 'TwitchTOS.zip'
-          path: dist
+          path: build
