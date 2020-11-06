@@ -38,4 +38,4 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "TwitchTOS.zip"
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: $GITHUB_TOKEN
