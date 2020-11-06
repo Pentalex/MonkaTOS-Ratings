@@ -24,10 +24,10 @@ jobs:
         
       - uses: c-hive/gha-yarn-cache@v1
       - name: Install dependencies
-      - run: yarn install
+        run: yarn install
       - name: Bundle extension
-      - run: yarn build
-      - env:
+        run: yarn build
+        env:
           NODE_ENVIRONMENT: production
       
       - name: Zip files
