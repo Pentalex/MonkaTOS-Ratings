@@ -3,39 +3,57 @@
 name: Releases
 
 # Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for tags
+# events but only for tags starting with 'v'
 on:
   push:
     tags: 
-    - '*'
+    - 'v*'
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   build:
+    name: Bundle and publish release
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - uses: c-hive/gha-yarn-cache@v1
       - name: Install dependencies
-        uses: CultureHQ/actions-yarn@master
-        with:
-          args: install
+      - run: yarn install
       - name: Bundle extension
-        uses: CultureHQ/actions-yarn@master
-        with:
-          args: build
-        env:
+      - run: yarn build
+      - env:
           NODE_ENVIRONMENT: production
-      - name: Archive release
+      
+      - name: Zip files
         uses: thedoctor0/zip-release@master
         with:
           filename: 'TwitchTOS.zip'
           path: build
-      - name: Publish release
-        uses: ncipollo/release-action@v1
+      
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          artifacts: "TwitchTOS.zip"
-          token: $GITHUB_TOKEN
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      
+      - name: Upload Release Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: ./TwitchTOS.zip
+          asset_name: TwitchTOS.zip
+          asset_content_type: application/zip
