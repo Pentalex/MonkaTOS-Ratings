@@ -3,7 +3,7 @@ import "../img/18px_level1.png";
 import "../img/18px_level2.png";
 import "../img/18px_level3.png";
 import "../img/18px_donator.png";
-
+import "../img/18px_betatester.png";
 const levels = [0, 100, 400, 800, 1000];
 const button = document.getElementById("signin");
 function capitalizeFirstLetter(string) {
@@ -71,6 +71,12 @@ chrome.storage.sync.get(["logged_in"], (result) => {
                         ratedvids.innerHTML = "Donator";
                         xpbar.innerHTML = `(Donator <3)`;
                         badge.src = chrome.extension.getURL("18px_donator.png");
+                    } else if (userVoteLevel === 98) {
+                        xpbar.style.width = "100%";
+                        ratedvids.innerHTML = "Beta Tester";
+                        xpbar.innerHTML = `(Beta Tester <3)`;
+                        // eslint-disable-next-line prettier/prettier
+                        badge.src = chrome.extension.getURL("18px_betatester.png");
                     } else {
                         xpbar.style.width = `${percentage}%`;
                         ratedvids.innerHTML = `${userVoteLevel} (${XP}/${nextlevel}XP)`;
