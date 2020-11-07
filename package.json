@@ -40,7 +40,6 @@
     "lint-staged": {
         "src/js/*.js": "eslint . --ignore-path .gitignore --fix",
         "src/css/*.css": "stylelint --fix"
-
     },
     "stylelint": {
         "extends": "stylelint-config-standard"
