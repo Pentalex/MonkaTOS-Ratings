@@ -287,6 +287,16 @@ if (window.location.href.indexOf("twitch")) {
                                                 "18px_donator.png"
                                             )}" class="chat-badge"></a>`
                                         );
+                                } else if (foundUserLevel === 98) {
+                                    console.log("Username found");
+                                    mutations[mutation].addedNodes[0]
+                                        .querySelector(".chat-line__username")
+                                        .insertAdjacentHTML(
+                                            "beforebegin",
+                                            `<a title="TwitchTOS Beta Tester <3" href="https://chrome.google.com/webstore/detail/monkatos-ratings/iecemifilihdioifbjkecacedfgfbfpl" target="_blank"><img src="${chrome.extension.getURL(
+                                                "18px_betatester.png"
+                                            )}" class="chat-badge"></a>`
+                                        );
                                 } else {
                                     console.log("Username found");
                                     mutations[mutation].addedNodes[0]

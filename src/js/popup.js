@@ -6,6 +6,9 @@ import "../img/18px_donator.png";
 
 const levels = [0, 100, 400, 800, 1000];
 const button = document.getElementById("signin");
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 button.onclick = () => {
     chrome.identity.launchWebAuthFlow(
         {
@@ -82,7 +85,9 @@ chrome.storage.sync.get(["logged_in"], (result) => {
                     if (data.userLevel === "") {
                         levelField.innerHTML = "User";
                     } else {
-                        levelField.innerHTML = data.userLevel;
+                        levelField.innerHTML = capitalizeFirstLetter(
+                            data.userLevel
+                        );
                     }
 
                     xpbarvisibility.style.removeProperty("display");
