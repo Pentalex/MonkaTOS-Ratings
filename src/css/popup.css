@@ -11,13 +11,13 @@ body {
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-
 }
 
 .container {
   width: 80%; /* Full width */
   background-color: #ddd; /* Grey background */
 }
+
 .skills {
   text-align: right; /* Right-align text */
   padding-top: 10px; /* Add top padding */
@@ -27,8 +27,6 @@ body {
 
 .card {
   min-height: 70%;
-  max-height: 70%;
-    min-height: 70%;
   max-height: 70%;
 }
 
@@ -49,18 +47,21 @@ body {
   padding: 20px;
 }
 
-#profilepic{
-    padding: 5px;
+#profilepic {
+  padding: 5px;
 }
-#user{
-    margin-bottom:0;
-    margin-right:5px;
-    margin-left:3px;
+
+#user {
+  margin-bottom: 0;
+  margin-right: 5px;
+  margin-left: 3px;
 }
-#level{
-    margin-bottom:0;
-    margin-left:3px;
+
+#level {
+  margin-bottom: 0;
+  margin-left: 3px;
 }
-#rated{
-    margin-left:3px;
+
+#rated {
+  margin-left: 3px;
 }
