@@ -1,6 +1,6 @@
 {
     "name": "TwitchTOS",
-    "version": "1.0.2",
+    "version": "1.0.6",
     "description": "An extension that helps you find out if the video you're watching is against Twitch terms of service or not, and lets you approve or report videos as Twitch TOS.",
     "repository": "git@github.com:Pentalex/TwitchTOS.git",
     "author": "Pentalex",
@@ -34,6 +34,7 @@
         "style-loader": "^2.0.0",
         "stylelint": ">=10.1.0",
         "stylelint-config-standard": "^20.0.0",
+        "webextension-polyfill": "^0.6.0",
         "webpack": "^5.3.0",
         "webpack-cli": "^4.1.0"
     },
