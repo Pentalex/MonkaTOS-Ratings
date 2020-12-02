@@ -4,6 +4,13 @@ import "../css/options.css";
 
 const button = document.getElementById("signin");
 const donate = document.getElementById("donate");
+const badgetoggle = document.getElementById("badgetoggle");
+
+chrome.storage.sync.get(["badgetoggle"], (result) => {
+    if (result.badgetoggle === true) {
+        badgetoggle.checked = true;
+    }
+});
 
 button.onclick = () => {
     chrome.identity.launchWebAuthFlow(
@@ -20,7 +27,6 @@ button.onclick = () => {
             chrome.storage.sync.set({
                 authcode: authCode,
             });
-            console.log(authCode);
             alert("Successfully signed in! You can now close the tab.");
         }
     );
@@ -29,3 +35,11 @@ button.onclick = () => {
 donate.onclick = () => {
     window.open("https://paypal.me/alex4160", "_blank");
 };
+
+badgetoggle.addEventListener("change", () => {
+    if (badgetoggle.checked === true) {
+        chrome.storage.sync.set({ badgetoggle: true });
+    } else if (badgetoggle.checked === false) {
+        chrome.storage.sync.set({ badgetoggle: false });
+    }
+});

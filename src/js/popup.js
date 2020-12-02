@@ -1,10 +1,7 @@
 import "../css/popup.css";
-import "../img/18px_level1.png";
-import "../img/18px_level2.png";
-import "../img/18px_level3.png";
 import "../img/18px_donator.png";
 import "../img/18px_betatester.png";
-const levels = [0, 100, 400, 800, 1000];
+const levels = differenceAlgorithm(50);
 const button = document.getElementById("signin");
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -77,15 +74,20 @@ chrome.storage.sync.get(["logged_in"], (result) => {
                         xpbar.innerHTML = `(Beta Tester <3)`;
                         // eslint-disable-next-line prettier/prettier
                         badge.src = chrome.extension.getURL("18px_betatester.png");
+                    } else if (userVoteLevel < 5) {
+                        xpbar.style.width = `${percentage}%`;
+                        ratedvids.innerHTML = `${userVoteLevel} (${XP}/${nextlevel}XP)`;
+                        if (percentage >= 30) {
+                            xp.innerHTML = `(${XP}/${nextlevel}XP)`;
+                        }
+                        badge.style.display = "none";
                     } else {
                         xpbar.style.width = `${percentage}%`;
                         ratedvids.innerHTML = `${userVoteLevel} (${XP}/${nextlevel}XP)`;
                         if (percentage >= 30) {
                             xp.innerHTML = `(${XP}/${nextlevel}XP)`;
                         }
-                        badge.src = chrome.extension.getURL(
-                            `18px_level${userVoteLevel}.png`
-                        );
+                        badge.src = `https://twitchtos.herokuapp.com/badge?id=${userVoteLevel}`;
                     }
 
                     if (data.userLevel === "") {
@@ -110,3 +112,16 @@ chrome.storage.sync.get(["logged_in"], (result) => {
         button.style.removeProperty("display");
     }
 });
+
+function differenceAlgorithm(level) {
+    const helper = (level) => {
+        if (level == 1) {
+            return [0];
+        } else {
+            const difference = (level - 1) * 10;
+            const prev = helper(level - 1);
+            return [difference + prev[0], ...prev];
+        }
+    };
+    return helper(level).reverse();
+}
