@@ -33,7 +33,7 @@ button.onclick = () => {
 };
 
 donate.onclick = () => {
-    window.open("https://paypal.me/alex4160", "_blank");
+    window.open("https://paypal.me/pentalex", "_blank");
 };
 
 badgetoggle.addEventListener("change", () => {

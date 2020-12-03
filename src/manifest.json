@@ -1,6 +1,6 @@
 {
     "name": "MonkaTOS Ratings",
-    "version": "1.0",
+    "version": "1.1.0",
     "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxA/5gRDmxVEW1+CoNyFuwJ+jIFNS83/O5hhAINu6bo3QSNeAJ0M3vmjWaMEK3uSDnAuRfQmFY5q+HWIbkQJl2tJZC2ZHedIxRgGyje0bEn4i2uOArlvVXqe4Tres3y73Qqg98qZUWjfX87/O8pz1djvswOiJONhScwSdo5VcF/PcVH+OQuBGUJwEry0pHz535tC+eFko1FobhLPkSLmzZPUXA1LXaA3zbBo8XKqbkp4F0XbLly/3D8sWldzbT26dVS90yPTlT8BeT+oBRB/K38wCpknBG9v5Xt9NHx+JPrqIUHA275pq/MQVdl8VRh5c+N31RdfQ05pWjAz+HSg66wIDAQAB",
     "description": "Provides a rating on how likely a video is to be react safe!",
     "options_page": "options.html",
@@ -23,8 +23,6 @@
             "all_frames": true,
             "js": ["content.bundle.js"],
             "run_at": "document_end"
-            
-
         }
     ],
     "manifest_version": 2,

@@ -3,6 +3,8 @@ import "../img/18px_donator.png";
 import "../img/18px_betatester.png";
 const levels = differenceAlgorithm(50);
 const button = document.getElementById("signin");
+const donate = document.getElementById("donate");
+
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -125,3 +127,7 @@ function differenceAlgorithm(level) {
     };
     return helper(level).reverse();
 }
+
+donate.onclick = () => {
+    window.open("https://paypal.me/pentalex", "_blank");
+};

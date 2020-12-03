@@ -65,3 +65,19 @@ body {
 #rated {
   margin-left: 3px;
 }
+
+.heart-shape::before {
+  color: rgb(194, 194, 194);
+  opacity: 30%;
+  content: "\2764";
+  font-size: 1.5em;
+  transition: 0.3s;
+  cursor: pointer;
+  position: relative;
+  top: -2px;
+}
+
+.heart-shape:hover::before {
+  color: rgb(255, 54, 54);
+  opacity: 100%;
+}

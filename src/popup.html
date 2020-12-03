@@ -4,10 +4,10 @@
         <title>Cool Popup</title>
         <style>
          body {
-             min-width: 200px;
-             max-width: 200px;
-             min-height: 60px;
-             max-height: 60px;
+             min-width: 220px;
+             max-width: 220px;
+             min-height: 80px;
+             max-height: 80px;
          }
          #button {
             white-space: nowrap;
@@ -21,14 +21,15 @@
         <div id="profile" style="display:none; padding: 5px;">
             <img id="image" class="rounded left" style="height: 50px; width: 50px; border-radius: 5px; display: flex; float: left;">
             <strong><p id="user" style="display: inline-block; color: white;">Username Here</p></strong>
+            <div style="float: right; padding-bottom: 3px"class="heart-shape" id="donate" title="Donate <3"></div>
             <p id="level" style="display: inline-block;">(Affiliate)</p>
-            <p id="rated" style="display: inline-block;">Level: <span id="ratedvids"></span></p> 
-            
-
+            <div>
+                <p id="rated" style="display: inline-block;">Level: <span id="ratedvids"></span></p> 
+            </div>
             <button id="logout" type="button" class="btn btn-default btn-sm" style="padding-top: 5px;">
                 <i class="fa fa-sign-out" style="font-size:12px"></i> Sign out
             </button>
-            <img id="badge" style="float:right; padding-top:5px">
+            <img id="badge" style="float:right; padding-top:12px">
             
         </div>
         <div style="padding: 5px">
@@ -38,6 +39,7 @@
                 <small id="xp" class="justify-content-center d-flex position-absolute w-100"></small>
                 </div>
             </div>
+
         </div>
         
         
