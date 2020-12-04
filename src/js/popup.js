@@ -9,24 +9,32 @@ function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 button.onclick = () => {
+    const redirectUrl = chrome.identity.getRedirectURL();
+    console.log(redirectUrl);
+
     chrome.identity.launchWebAuthFlow(
         {
-            url:
-                "https://api.twitch.tv/kraken/oauth2/authorize?response_type=code&client_id=dv2j00xctf5qhix8y271pl0vnm20ny&redirect_uri=https://iecemifilihdioifbjkecacedfgfbfpl.chromiumapp.org/cb&scope=user:read:email",
+            url: `https://api.twitch.tv/kraken/oauth2/authorize?response_type=code&client_id=dv2j00xctf5qhix8y271pl0vnm20ny&redirect_uri=${encodeURIComponent(
+                redirectUrl
+            )}&scope=user:read:email`,
             interactive: true,
         },
         (redirectUrl) => {
             const url = new URL(redirectUrl);
-
+            const oldRedirectUrl = chrome.identity.getRedirectURL();
+            console.log(oldRedirectUrl);
             const authCode = url.searchParams.get("code");
+            console.log(authCode);
 
-            fetch(`https://twitchtos.herokuapp.com/auth?authcode=${authCode}`)
+            fetch(
+                `https://twitchtos.herokuapp.com/auth?authcode=${authCode}&redirect_uri=${oldRedirectUrl}`
+            )
                 .then((r) => r.text())
                 .then((result) => {
                     chrome.storage.sync.set({ access_token: result });
                     chrome.storage.sync.set({ logged_in: true });
                     console.log("Logged in");
-                    location.reload();
+                    //location.reload();
                 });
         }
     );

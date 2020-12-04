@@ -20,7 +20,7 @@ function refresh() {
     });
 }
 
-setInterval(refresh, 1000 * 500);
+setInterval(refresh, 1000 * 1500);
 
 chrome.storage.onChanged.addListener((changes, _namespace) => {
     for (const key in changes) {

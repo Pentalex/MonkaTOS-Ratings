@@ -81,3 +81,7 @@ body {
   color: rgb(255, 54, 54);
   opacity: 100%;
 }
+
+.progress-bar {
+  background-color: #c000a0;
+}
