@@ -34,7 +34,7 @@ button.onclick = () => {
                     chrome.storage.sync.set({ access_token: result });
                     chrome.storage.sync.set({ logged_in: true });
                     console.log("Logged in");
-                    //location.reload();
+                    location.reload();
                 });
         }
     );
